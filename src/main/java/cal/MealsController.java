@@ -2,47 +2,43 @@ package cal;
 
 import java.util.Date;
 
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class MealsController {
 
   DataBase myFoods = new DataBase();
 
-  @RequestMapping("/meal/{id}")
+  @RequestMapping(value = "/meal/{id}", method = RequestMethod.GET)
   public Meal meal(@PathVariable("id") Integer id) {
-
-    myFoods.addMeal(new Meal(1, "gyros", 450, "2016-05-24 13:22"));
-    myFoods.addMeal(new Meal(2, "hamburger", 600, "2016-05-24 14:56"));
-    myFoods.addMeal(new Meal(3, "tic-tac", 2, "2016-05-24 12:35"));
-
+    myFoods.defaultMeal();
     return myFoods.getMeal(id);
 //    return myFoods.getItem(id);
   }
 
-  @RequestMapping("/meal")
+  @RequestMapping(value = "/meal", method = RequestMethod.GET)
   public Meal meal2(@RequestParam(value = "id") Integer id) {
-
-    myFoods.addMeal(new Meal(1, "gyros", 450, "2016-05-24 13:22"));
-    myFoods.addMeal(new Meal(2, "hamburger", 600, "2016-05-24 14:56"));
-    myFoods.addMeal(new Meal(3, "tic-tac", 2, "2016-05-24 12:35"));
-
+    myFoods.defaultMeal();
     return myFoods.getMeal(id);
 //    return myFoods.getItem(id);
   }
 
-  @RequestMapping("/meals")
+  @RequestMapping(value = "/meals", method = RequestMethod.GET)
   public DataBase meals() {
-
-    myFoods.addMeal(new Meal(1, "gyros", 450, "2016-05-24 13:22"));
-    myFoods.addMeal(new Meal(2, "hamburger", 600, "2016-05-24 14:56"));
-    myFoods.addMeal(new Meal(3, "tic-tac", 2, "2016-05-24 12:35"));
-
+    myFoods.defaultMeal();
     return myFoods;
   }
 
+  @RequestMapping(value = "/meals", method = RequestMethod.POST)
+  public String addMeal(@RequestBody Meal addedMeal) {
+    myFoods.addMeal(addedMeal);
+    return "nagyon fasza ez emígyen";
+  }
+
+  @RequestMapping(value = "/meals/{id}", method = RequestMethod.DELETE)
+  public String deleteMeal(@PathVariable("id") Integer id) {
+    myFoods.deleteMeal(id);
+    return id + ". torolve";
+  }
 
 }

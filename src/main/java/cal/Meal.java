@@ -15,6 +15,10 @@ public class Meal {
     this.date = date;
   }
 
+  public Meal() {
+
+  }
+
   public String toString() {
     return "id = " + this.id + ", name = " + this.name + ", calories = " + calorie + " kcal, Date: " + date;
   }
