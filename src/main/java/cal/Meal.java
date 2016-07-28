@@ -6,9 +6,9 @@ public class Meal {
   public int id;
   public String name;
   public int calorie;
-  public Date date;
+  public String date;
 
-  public Meal(int id, String name, int calorie, Date date) {
+  public Meal(int id, String name, int calorie, String date) {
     this.id = id;
     this.name = name;
     this.calorie = calorie;

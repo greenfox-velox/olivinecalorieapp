@@ -4,14 +4,14 @@ import java.util.ArrayList;
 
 public class DataBase {
 
-  public ArrayList<Meal> list = new ArrayList<Meal>();
+  public ArrayList<Meal> meals = new ArrayList<Meal>();
 
   public void addMeal(Meal veryNew) {
-    list.add(veryNew);
+    meals.add(veryNew);
   }
 
   public Meal getMeal(int id) {
-    for(Meal meal : list) {
+    for(Meal meal : meals) {
       if(meal.id == id) {
         return meal;
       }
